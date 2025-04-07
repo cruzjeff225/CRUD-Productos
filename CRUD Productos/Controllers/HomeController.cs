@@ -39,7 +39,7 @@ public class HomeController : Controller
         return View(productos);
     }
 
-    IActionResult Create()
+    public IActionResult Create()
     {
         CargarListasDesplegables();
         return View();
