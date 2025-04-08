@@ -60,6 +60,34 @@ public class HomeController : Controller
         return RedirectToAction("Index");
     }
 
+    public async Task<IActionResult> Delete(int? id)
+    {
+        if (id == null)
+        {
+            return NotFound();
+        }
+        var producto = await _context.Productos
+            .Include(p => p.Categoria)
+            .Include(p => p.Proveedores)
+            .FirstOrDefaultAsync(m => m.ID == id);
+        if (producto == null)
+        {
+            return NotFound();
+        }
+        return View(producto);
+    }
+
+    [HttpPost, ActionName("Delete")]
+    [ValidateAntiForgeryToken]
+
+    public async Task<IActionResult> DeleteConfirmed(int id)
+    {
+        var producto = await _context.Productos.FindAsync(id);
+        _context.Productos.Remove(producto);
+        await _context.SaveChangesAsync();
+        return RedirectToAction(nameof(Index));
+    }
+
     private void CargarListasDesplegables()
     {
         ViewData["CategoriaID"] = new SelectList(_context.Categorias, "ID", "Nombre");
