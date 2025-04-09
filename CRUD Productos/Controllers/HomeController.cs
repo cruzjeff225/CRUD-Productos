@@ -60,6 +60,63 @@ public class HomeController : Controller
         return RedirectToAction("Index");
     }
 
+    public async Task<IActionResult> Edit(int? id)
+    {
+        if (id == null)
+        {
+            return NotFound();
+        }
+        var producto = await _context.Productos.FindAsync(id);
+        if (producto == null)
+        {
+            return NotFound();
+        }
+        CargarListasDesplegables(); 
+        return View(producto);
+    }
+
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> Edit(int id, string Nombre, decimal Precio, int CategoriaID, int ProveedorID)
+    {
+        var producto = await _context.Productos.FindAsync(id);
+
+        if (producto == null)
+        {
+            return NotFound();
+        }
+
+        producto.Nombre = Nombre;
+        producto.Precio = Precio;
+        producto.CategoriaID = CategoriaID;
+        producto.ProveedorID = ProveedorID;
+
+        try
+        {
+            _context.Update(producto);
+            await _context.SaveChangesAsync();
+            TempData["SuccessMessage"] = "Producto actualizado correctamente.";
+            return RedirectToAction("Index");
+        }
+        catch (DbUpdateConcurrencyException)
+        {
+            if (!ProductoExists(id))
+            {
+                return NotFound();
+            }
+            else
+            {
+                throw;
+            }
+        }
+            
+        }
+
+    private bool ProductoExists(object id)
+    {
+        throw new NotImplementedException();
+    }
+
     public async Task<IActionResult> Delete(int? id)
     {
         if (id == null)
