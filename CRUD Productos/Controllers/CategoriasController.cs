@@ -50,7 +50,9 @@ public class CategoriasController : Controller
         _context.Categorias.Add(categoria);
         await _context.SaveChangesAsync();
 
-        return View(categoria);
+        TempData["SuccessMessage"] = "Categoría creada con exito";
+        return RedirectToAction("Index");
+
     }
 
     // Editar categoría existente
