@@ -1,0 +1,30 @@
+﻿@model IEnumerable<Categoria>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+@* *@
+<h1>Productos</h1>
+<p>
+    <a asp-action="Create" class="btn btn-primary">Agregar Nueva Categoría</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Categoría</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.Nombre)</td>
+                <td>
+                <a asp-action="Edit" asp-route-id="@item.ID" class="btn btn-warning">Editar</a>
+                <a asp-action="Delete" asp-route-id="@item.ID" class="btn btn-danger">Eliminar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
