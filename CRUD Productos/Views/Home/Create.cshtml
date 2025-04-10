@@ -23,12 +23,11 @@
 				<label asp-for="ProveedorID" class="control-label"></label>
 				<select asp-for="ProveedorID" class="form-control" asp-items="ViewBag.ProveedorID"></select>
 			</div>
+			<br />
 			<div class="form-group">
 				<input type="submit" value="Guardar" class="btn btn-primary" />
+				<a asp-action="Index" class="btn btn-secondary">Volver a la lista</a>
 			</div>
 		</form>
 	</div>
-</div>
-<div>
-	<a asp-action="Index">Volver a la lista</a>
 </div>

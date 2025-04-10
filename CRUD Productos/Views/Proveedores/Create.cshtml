@@ -1,5 +1,5 @@
 ﻿@model Proveedores
-<h1>@(ViewContext.RouteData.Values["action"].ToString() == "Create" ? "Crear" : "Editar") Proveedores</h1>
+<h1>@(ViewContext.RouteData.Values["action"].ToString() == "Create" ? "Crear" : "Editar") Proveedor</h1>
 <hr />
 <div class="row">
 	<div class="col-md-4">
@@ -17,12 +17,11 @@
                 <label asp-for="Direccion"></label>
                 <input asp-for="Direccion" class="form-control" />
             </div>
+            <br />
 			<div class="form-group">
 				<input type="submit" value="Guardar" class="btn btn-primary" />
+                <a asp-action="Index" class="btn btn-secondary">Volver a la lista</a>
 			</div>
 		</form>
 	</div>
-</div>
-<div>
-	<a asp-action="Index">Volver a la lista</a>
 </div>

@@ -6,7 +6,7 @@
 
 <h1>Editar</h1>
 
-<h4>Categorías</h4>
+<h4>Proveedor</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -25,15 +25,13 @@
                 <label asp-for="Direccion"></label>
                 <input asp-for="Direccion" class="form-control" />
             </div>
+            <br />
             <div class="form-group">
                 <input type="submit" value="Actualizar" class="btn btn-primary" />
+                <a asp-action="Index" class="btn btn-secondary">Volver a la lista</a>
             </div>
         </form>
     </div>
-</div>
-
-<div>
-    <a asp-action="Index">Volver a la lista</a>
 </div>
 
 @section Scripts {
