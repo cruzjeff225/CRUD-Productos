@@ -1,0 +1,73 @@
+﻿@model IEnumerable<CRUD_Productos.Models.Producto>
+
+@{
+	ViewData["Title"] = "Reporte de Productos";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+	<title>@ViewData["Title"]</title>
+	<style>
+		body {
+			font-family: Arial, sans-serif;
+		}
+		h1 {
+			color: #333;
+			text-align: center;
+		}
+		.report-date{
+			text-align: right;
+			margin-bottom: 20px;
+		}
+		table {
+			width: 100%;
+			border-collapse: collapse;
+			margin: 20px;
+		}
+		th {
+			background-color: #f2f2f2;
+			text-align: left;
+			padding: 8px;
+		}
+		td {
+			padding: 8px;
+			border-bottom: 1px solid #ddd;
+		}
+		.text-right {
+			text-align: right;
+		}
+	</style>
+	</head>
+	<body>
+	<h1>Reporte de Productos</h1>
+	<div class="report-date">Generado el: @DateTime.Now.ToString("dd/MM/yyyy")</div>
+	<table>
+		<thead>
+			<tr>
+				<th>Nombre</th>
+				<th>Precio</th>
+				<th>Categoría</th>
+				<th>Proveedor</th>
+				<th>Inventario</th>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach (var item in Model)
+			{
+				<tr>
+					<td>@item.Nombre</td>
+					<td>@item.Precio.ToString("C")</td>
+					<td>@item.Categoria?.Nombre</td>
+					<td>@item.Proveedores?.Nombre</td>
+					<td>@item.Inventario?.Cantidad</td>
+				</tr>
+			}
+		</tbody>
+	</table>
+	</body>
+</html>
+
+
